@@ -6,15 +6,78 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>  -->
         <title>Upload Animation</title>
+        <style>
+            button{border-radius: 100%;width: 50px;height: 50px;cursor: pointer;}
+            .purple{background: rgb(122, 29, 237);fill: rgb(122, 29, 237);}
+            .red{background: rgb(237, 29, 64); fill:rgb(237, 29, 64);}
+            .blue{background: rgb(29, 154, 237); fill:rgb(29, 154, 237);}
+            .green{background: rgb(29, 237, 116); fill:rgb(29, 237, 116);}
+            .yellow{background: rgb(206, 237, 29); fill:rgb(206, 237, 29);}
+        </style>
     </head>
     <body>
-        <div id="uploadInput"></div>
+        <div id="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div>
+        <button class="purple"></button><button class="red"></button><button class="blue"></button><button class="green"></button><button class="yellow"></button>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.11.0/lottie.min.js"></script>
+        
+
         <script>
-            bodymovin.loadAnimation({
-                container: document.getElementById("uploadInput"),
-                path: 'data.json'
+
+            var container = document.getElementById('uploadInput');
+            var state = 'first'; 
+
+            var animation = bodymovin.loadAnimation({
+                container: container,
+                path: 'data.json',
+                renderer: 'svg',
+                loop: false,
+                autoplay: false,
+                name: "button Animation",
+                });
+
+                animation.goToAndStop(0, true);
+
+                container.addEventListener('click', () => {
+                    function loop() {
+                        console.log('Loop start');
+                        animation.playSegments([31, 69], true);
+                    }
+                    animation.playSegments([0, 31], true);
+                    animation.addEventListener('complete', loop);
+
+                // if(state === 'first') {
+                // // animation.playSegments([0, 100], true);
+                // animation.playSegments([[1,100],[40,100],[40,100],[40,100],[40,100]], true);
+                // animation.addEventListener('enterFrame', repeat);
+                // // animation.setSpeed(.8);
+                // // console.log('finish');
+                //     state = 'second';
+                // } else {
+                //     animation.playSegments([0, 0], true);
+                //     state = 'first';
+                // }
             });
+
+            function startLooop(){
+                function loop() {
+                        console.log('Loop start');
+                        animation.playSegments([31, 69], true);
+                    }
+                    animation.playSegments([0, 31], true);
+                    animation.addEventListener('complete', loop);
+            }
+
+            
+            
+
+            // bodymovin.loadAnimation({
+            //     container: document.getElementById("uploadInput"),
+            //     path: 'data.json',
+            //     auto: true,
+            //     loop: true, // optional
+            //     autoplay: true, // optional
+            //     name: "Demo Animation", // optional
+            // });
         // var container = document.getElementById("uploadInput");
         //     var options = {
         //         container: container,
@@ -28,6 +91,24 @@
         //         var t = (ev.clientX - rect.left) / rect.width;
         //         anim.goToAndStop(t * json.op, true);
         //     });    
+        </script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script>
+            $( "#purple" ).hover(function() {
+                $('#uploadInput path').css("fill", "rgb(122, 29, 237)");
+            } );
+            $( "#red" ).on( "click", function() {
+                $('#uploadInput path').addClass('red');
+            } );
+            $( "#blue" ).on( "click", function() {
+                $('#uploadInput path').addClass('blue');
+            } );
+            $( "#green" ).on( "click", function() {
+                $('#uploadInput path').addClass('green');
+            } );
+            $( "#yellow" ).on( "click", function() {
+                $('#uploadInput path').addClass('yellow');
+            } );
         </script>
     </body>
     
