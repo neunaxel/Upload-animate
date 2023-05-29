@@ -4,27 +4,31 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> 
+        <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>  -->
         <title>Upload Animation</title>
     </head>
     <body>
-        <lottie-player src="data2.json"  class="header-vector" background="transparent"  speed="1" loop autoplay></lottie-player> 
-        <lottie-player autoplay controls loop mode="normal" src="data.json" style="width: 320px"></lottie-player>
-        <lottie-player id="firstLottie" src="data.json" style="width:400px; height: 400px;">"></lottie-player>
+        <div id="uploadInput"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.11.0/lottie.min.js"></script>
         <script>
-            LottieInteractivity.create({
-            player:'#firstLottie',
-            mode:"scroll",
-                actions: [
-                {
-                    visibility:[0, 1.0],
-                    type: "seek",
-                    frames: [0, 300],
-                },
-                ]
+            bodymovin.loadAnimation({
+                container: document.getElementById("uploadInput"),
+                path: 'data.json'
             });
+        // var container = document.getElementById("uploadInput");
+        //     var options = {
+        //         container: container,
+        //         path: 'data.json',
+        //         loop: true,
+        //         autoplay: false,
+        //     };
+        //     var anim = bodymovin.loadAnimation(options);
+        //     container.addEventListener("mousemove", ev => {
+        //         var rect = container.getBoundingClientRect();
+        //         var t = (ev.clientX - rect.left) / rect.width;
+        //         anim.goToAndStop(t * json.op, true);
+        //     });    
         </script>
-
-
     </body>
+    
 </html>
