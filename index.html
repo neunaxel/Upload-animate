@@ -1,115 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>  -->
-        <title>Upload Animation</title>
-        <style>
-            button{border-radius: 100%;width: 50px;height: 50px;cursor: pointer;}
-            .purple{background: rgb(122, 29, 237);fill: rgb(122, 29, 237);}
-            .red{background: rgb(237, 29, 64); fill:rgb(237, 29, 64);}
-            .blue{background: rgb(29, 154, 237); fill:rgb(29, 154, 237);}
-            .green{background: rgb(29, 237, 116); fill:rgb(29, 237, 116);}
-            .yellow{background: rgb(206, 237, 29); fill:rgb(206, 237, 29);}
-        </style>
-    </head>
-    <body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>  -->
+    <title>Upload Animation</title>
+    <style>
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+        }
+
+        #colors {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #colors button {
+            border-radius: 20px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            margin: 5px;
+            border: none;
+            transition: all .3s;
+        }
+
+        #colors button:hover {
+            box-shadow: 4px 4px 0px #787878;
+            transform: translate(-5px, -5px);
+        }
+
+        .purple {
+            background: #A459D1;
+        }
+
+        .red {
+            background: #F45050;
+        }
+
+        .blue {
+            background: #4C4C6D;
+        }
+
+        .green {
+            background: #1B9C85;
+        }
+
+        .gold {
+            background: #FFB84C;
+        }
+
+        .LightPink {
+            background: rgb(255, 182, 182);
+        }
+
+        .success {
+            border: none;
+            border-radius: 19px;
+            padding: 15px 50px;
+            color: white;
+            background-color: #4c4d6d;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
         <div id="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div>
-        <button class="purple"></button><button class="red"></button><button class="blue"></button><button class="green"></button><button class="yellow"></button>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.11.0/lottie.min.js"></script>
-        
+        <button class="success">
+            Success
+        </button>
+    </div>
 
-        <script>
+    <div id="colors"><button class="blue"></button><button class="green"></button><button
+            class="purple"></button><button class="red"></button><button class="gold"></button><button
+            class="LightPink"></button></div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.11.0/lottie.min.js"></script>
 
-            var container = document.getElementById('uploadInput');
-            var state = 'first'; 
 
-            var animation = bodymovin.loadAnimation({
-                container: container,
-                path: 'data.json',
-                renderer: 'svg',
-                loop: false,
-                autoplay: false,
-                name: "button Animation",
-                });
+    <script>
+        var container = document.getElementById('uploadInput');
+        var state = '';
 
-                animation.goToAndStop(0, true);
-
-                container.addEventListener('click', () => {
-                    function loop() {
-                        console.log('Loop start');
-                        animation.playSegments([31, 69], true);
-                    }
-                    animation.playSegments([0, 31], true);
-                    animation.addEventListener('complete', loop);
-
-                // if(state === 'first') {
-                // // animation.playSegments([0, 100], true);
-                // animation.playSegments([[1,100],[40,100],[40,100],[40,100],[40,100]], true);
-                // animation.addEventListener('enterFrame', repeat);
-                // // animation.setSpeed(.8);
-                // // console.log('finish');
-                //     state = 'second';
-                // } else {
-                //     animation.playSegments([0, 0], true);
-                //     state = 'first';
-                // }
-            });
-
-            function startLooop(){
-                function loop() {
-                        console.log('Loop start');
-                        animation.playSegments([31, 69], true);
-                    }
-                    animation.playSegments([0, 31], true);
-                    animation.addEventListener('complete', loop);
+        var animation = bodymovin.loadAnimation({
+            container: container,
+            path: 'data.json',
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            name: "button Animation",
+        });
+        container.addEventListener('click', () => {
+            function loop() {
+                if (state == '') {
+                    animation.playSegments([31, 69], true);
+                } else if (state == 'success') {
+                    animation.playSegments([69, 139], true);
+                    console.log('043809834 '+ animation.currentFrame , animation.currentFrame == 0.001);
+                    animation.removeEventListener('complete', loop);
+                    animation.loop = false;
+                    return false;
+                }
             }
+            animation.playSegments([0, 31], true);
+            if (state == '') {
+                animation.addEventListener('complete', loop);
+            }
+        });
 
-            
-            
+        $(".purple").on("click", function () {
+            $('#uploadInput path').attr("fill", "#A459D1");
+            $('#uploadInput g[font-size] path').attr("fill", "white");
+        });
+        $(".red").on("click", function () {
+            $('#uploadInput path').attr("fill", "#F45050");
+            $('#uploadInput g[font-size] path').attr("fill", "white");
+        });
+        $(".blue").on("click", function () {
+            $('#uploadInput path').attr("fill", "#4C4C6D");
+            $('#uploadInput g[font-size] path').attr("fill", "white");
+        });
+        $(".green").on("click", function () {
+            $('#uploadInput path').attr("fill", "#1B9C85");
+            $('#uploadInput g[font-size] path').attr("fill", "white");
+        });
+        $(".gold").on("click", function () {
+            $('#uploadInput path').attr("fill", "#FFB84C");
+            $('#uploadInput g[font-size] path').attr("fill", "white");
+        });
+        $(".LightPink").on("click", function () {
+            $('#uploadInput path').attr("fill", "rgb(255,182,182)");
+            $('#uploadInput g[font-size] path').attr("fill", "white");
+        });
+        $(".success").on("click", function () {
+            state = 'success';
+        });  
+    </script>
+</body>
 
-            // bodymovin.loadAnimation({
-            //     container: document.getElementById("uploadInput"),
-            //     path: 'data.json',
-            //     auto: true,
-            //     loop: true, // optional
-            //     autoplay: true, // optional
-            //     name: "Demo Animation", // optional
-            // });
-        // var container = document.getElementById("uploadInput");
-        //     var options = {
-        //         container: container,
-        //         path: 'data.json',
-        //         loop: true,
-        //         autoplay: false,
-        //     };
-        //     var anim = bodymovin.loadAnimation(options);
-        //     container.addEventListener("mousemove", ev => {
-        //         var rect = container.getBoundingClientRect();
-        //         var t = (ev.clientX - rect.left) / rect.width;
-        //         anim.goToAndStop(t * json.op, true);
-        //     });    
-        </script>
-        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-        <script>
-            $( "#purple" ).hover(function() {
-                $('#uploadInput path').css("fill", "rgb(122, 29, 237)");
-            } );
-            $( "#red" ).on( "click", function() {
-                $('#uploadInput path').addClass('red');
-            } );
-            $( "#blue" ).on( "click", function() {
-                $('#uploadInput path').addClass('blue');
-            } );
-            $( "#green" ).on( "click", function() {
-                $('#uploadInput path').addClass('green');
-            } );
-            $( "#yellow" ).on( "click", function() {
-                $('#uploadInput path').addClass('yellow');
-            } );
-        </script>
-    </body>
-    
 </html>
