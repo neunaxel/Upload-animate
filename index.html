@@ -9,21 +9,23 @@
     <title>Upload Animation</title>
     <style>
         .content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            margin: auto;
+            position: relative;
             text-align: center;
+            width: 100%;
+            height: 100%;
         }
 
         #colors {
-            position: fixed;
-            top: 50px;
-            right: 50px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            right: 17px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
         }
 
         #colors button {
@@ -73,22 +75,32 @@
             background-color: #4c4d6d;
             cursor: pointer;
         }
+
+        .upload-button {
+            background-color: rgb(246 246 246);
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border-radius: 30px;
+            margin: 50px;
+            box-shadow: inset 0 0 3px #5e5e5e8a;
+        }
     </style>
 </head>
 
 <body>
-    <div class="content">
-        <div id="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div>
-        <button class="success">
-            Success
-        </button>
+    <div class="upload-button">
+        <div class="content">
+            <div id="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div>
+            <button class="success">Success</button>
+        </div>
+
+        <div id="colors">
+            <button class="blue"></button><button class="green"></button><button class="purple"></button><button class="red"></button><button class="gold"></button><button class="LightPink"></button>
+        </div>
     </div>
 
-    <div id="colors"><button class="blue"></button><button class="green"></button><button
-            class="purple"></button><button class="red"></button><button class="gold"></button><button
-            class="LightPink"></button></div>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.11.0/lottie.min.js"></script>
 
 
@@ -110,10 +122,9 @@
                     animation.playSegments([31, 69], true);
                 } else if (state == 'success') {
                     animation.playSegments([69, 139], true);
-                    console.log('043809834 '+ animation.currentFrame , animation.currentFrame == 0.001);
                     animation.removeEventListener('complete', loop);
                     animation.loop = false;
-                    return false;
+                    state = '';
                 }
             }
             animation.playSegments([0, 31], true);
@@ -148,7 +159,7 @@
         });
         $(".success").on("click", function () {
             state = 'success';
-        });  
+        });
     </script>
 </body>
 
