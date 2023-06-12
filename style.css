@@ -1,0 +1,104 @@
+Body{
+    background-color: #c29fff;
+    background-image: url("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDE2NzEzNA&ixlib=rb-1.2.1&q=85");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+
+.content {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+#colors {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#colors button {
+    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin: 5px;
+    border: none;
+    transition: all .3s;
+    border: 1px solid #d9d9d9;
+}
+
+#colors button:hover {
+    box-shadow: 4px 4px 0px #ffffff;
+    transform: translate(-5px, -5px);
+}
+
+.purple {
+    background: #A459D1;
+}
+
+.red {
+    background: #F45050;
+}
+
+.blue {
+    background: #4C4C6D;
+}
+
+.green {
+    background: #1B9C85;
+}
+
+.gold {
+    background: #FFB84C;
+}
+
+.LightPink {
+    background: rgb(255, 182, 182);
+}
+
+.success {
+    border: none;
+    border-radius: 19px;
+    padding: 15px 50px;
+    color: white;
+    background-color: #4c4d6d;
+    cursor: pointer;
+}
+
+.upload-button {
+    /* background-color: rgb(246 246 246 / 53%); */
+    /* filter: blur(1px); */
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 50px;
+    /* overflow: hidden; */
+}
+
+.upload-button::before{content:'';position: absolute;width: 100%;height: 100%;-webkit-backdrop-filter: blur(12px);backdrop-filter: blur(12px);background-color: rgb(255 255 255 / 17%);border-radius: 0.375rem;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);}

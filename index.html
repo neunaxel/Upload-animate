@@ -5,162 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>  -->
-    <title>Upload Animation</title>
+    <title>Upload Animations</title>
     <style>
-        .content {
-            position: relative;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-        }
 
-        #colors {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            right: 17px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            align-content: center;
-        }
-
-        #colors button {
-            border-radius: 20px;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            margin: 5px;
-            border: none;
-            transition: all .3s;
-        }
-
-        #colors button:hover {
-            box-shadow: 4px 4px 0px #787878;
-            transform: translate(-5px, -5px);
-        }
-
-        .purple {
-            background: #A459D1;
-        }
-
-        .red {
-            background: #F45050;
-        }
-
-        .blue {
-            background: #4C4C6D;
-        }
-
-        .green {
-            background: #1B9C85;
-        }
-
-        .gold {
-            background: #FFB84C;
-        }
-
-        .LightPink {
-            background: rgb(255, 182, 182);
-        }
-
-        .success {
-            border: none;
-            border-radius: 19px;
-            padding: 15px 50px;
-            color: white;
-            background-color: #4c4d6d;
-            cursor: pointer;
-        }
-
-        .upload-button {
-            background-color: rgb(246 246 246);
-            position: relative;
-            width: 500px;
-            height: 500px;
-            border-radius: 30px;
-            margin: 50px;
-            box-shadow: inset 0 0 3px #5e5e5e8a;
-        }
     </style>
 </head>
 
 <body>
-    <div class="upload-button">
-        <div class="content">
-            <div id="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div>
-            <button class="success">Success</button>
-        </div>
-
-        <div id="colors">
-            <button class="blue"></button><button class="green"></button><button class="purple"></button><button class="red"></button><button class="gold"></button><button class="LightPink"></button>
+    <div class="container">
+        <div class="wrapper">
+            <div id="button-1" class="upload-button">
+                <div class="content"><div id="uploadInput1" class="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div><button class="success">Success</button></div>
+                <div id="colors"><button class="blue"></button><button class="green"></button><button class="purple"></button><button class="red"></button><button class="gold"></button><button class="LightPink"></button></div>
+            </div>
+            <div id="button-2" class="upload-button">
+                <div class="content"><div id="uploadInput2" class="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div><button class="success">Success</button></div>
+            </div>
+            <div id="button-3" class="upload-button">
+                <div class="content"><div id="uploadInput3" class="uploadInput" style="width:300px;margin: auto;cursor: pointer;"></div><button class="success">Success</button></div>
+            </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.11.0/lottie.min.js"></script>
+    <script src="script.js"></script>
 
-
-    <script>
-        var container = document.getElementById('uploadInput');
-        var state = '';
-
-        var animation = bodymovin.loadAnimation({
-            container: container,
-            path: 'data.json',
-            renderer: 'svg',
-            loop: false,
-            autoplay: false,
-            name: "button Animation",
-        });
-        container.addEventListener('click', () => {
-            function loop() {
-                if (state == '') {
-                    animation.playSegments([31, 69], true);
-                } else if (state == 'success') {
-                    animation.playSegments([69, 139], true);
-                    animation.removeEventListener('complete', loop);
-                    animation.loop = false;
-                    state = '';
-                }
-            }
-            animation.playSegments([0, 31], true);
-            if (state == '') {
-                animation.addEventListener('complete', loop);
-            }
-        });
-
-        $(".purple").on("click", function () {
-            $('#uploadInput path').attr("fill", "#A459D1");
-            $('#uploadInput g[font-size] path').attr("fill", "white");
-        });
-        $(".red").on("click", function () {
-            $('#uploadInput path').attr("fill", "#F45050");
-            $('#uploadInput g[font-size] path').attr("fill", "white");
-        });
-        $(".blue").on("click", function () {
-            $('#uploadInput path').attr("fill", "#4C4C6D");
-            $('#uploadInput g[font-size] path').attr("fill", "white");
-        });
-        $(".green").on("click", function () {
-            $('#uploadInput path').attr("fill", "#1B9C85");
-            $('#uploadInput g[font-size] path').attr("fill", "white");
-        });
-        $(".gold").on("click", function () {
-            $('#uploadInput path').attr("fill", "#FFB84C");
-            $('#uploadInput g[font-size] path').attr("fill", "white");
-        });
-        $(".LightPink").on("click", function () {
-            $('#uploadInput path').attr("fill", "rgb(255,182,182)");
-            $('#uploadInput g[font-size] path').attr("fill", "white");
-        });
-        $(".success").on("click", function () {
-            state = 'success';
-        });
-    </script>
 </body>
 
 </html>
