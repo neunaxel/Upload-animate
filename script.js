@@ -46,15 +46,15 @@ var button2 = bodymovin.loadAnimation({
 container2.addEventListener('click', () => {
     function loop() {
         if (state == '') {
-            button2.playSegments([31, 69], true);
+            button2.playSegments([35, 115], true);
         } else if (state == 'success') {
-            button2.playSegments([69, 139], true);
+            button2.playSegments([115, 190], true);
             button2.removeEventListener('complete', loop);
             button2.loop = false;
             state = '';
         }
     }
-    button2.playSegments([0, 31], true);
+    button2.playSegments([0, 35], true);
     if (state == '') {
         button2.addEventListener('complete', loop);
     }
@@ -74,15 +74,15 @@ var button3 = bodymovin.loadAnimation({
 container3.addEventListener('click', () => {
     function loop() {
         if (state == '') {
-            button3.playSegments([31, 100], true);
+            button3.playSegments([35, 120], true);
         } else if (state == 'success') {
-            button3.playSegments([69, 139], true);
+            button3.playSegments([120, 600], true);
             button3.removeEventListener('complete', loop);
             button3.loop = false;
             state = '';
         }
     }
-    button3.playSegments([0, 31], true);
+    button3.playSegments([0, 35], true);
     if (state == '') {
         button3.addEventListener('complete', loop);
     }
